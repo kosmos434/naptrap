@@ -1,5 +1,5 @@
 //TODO
-//day night mode
+// day night mode
 // sun/moon toggle emoji for nav
 // refactor or clean up everything
 
@@ -9,11 +9,12 @@ console.log("howdy 🤠");
 // react to the drag function
 let imgList = ["d1.png", "d2.png", "d3.png", "d4.png", "d5.png", "d6.png"];
 document.addEventListener("mousedown", drag);
+let diceBtn = document.querySelector(".btn");
 let diceImg = document.querySelector(".dice");
 let vampDiv = document.querySelector(".vampDiv");
 let humanDiv = document.querySelector(".humanDiv");
 
-diceImg.addEventListener("click", function (event) {
+diceBtn.addEventListener("click", function (event) {
   diceImg.src =
     "img/dice/" + imgList[Math.floor(Math.random() * imgList.length)];
 });

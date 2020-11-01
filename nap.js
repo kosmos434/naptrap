@@ -1,19 +1,20 @@
+console.log("howdy 🤠");
 //TODO
 // refactor or clean up everything
 // flex box or grid for board instead of img
 // snap to grid?
 // simple dice animation?
 
-console.log("howdy 🤠");
-
 // this uses "bubbling" to make all these
 // react to the drag function
-let imgList = ["d1.png", "d2.png", "d3.png", "d4.png", "d5.png", "d6.png"];
 document.addEventListener("mousedown", drag);
+
+let imgList = ["d1.png", "d2.png", "d3.png", "d4.png", "d5.png", "d6.png"];
 let diceImg = document.querySelector(".dice");
 let vampDiv = document.querySelector(".vampDiv");
 let humanDiv = document.querySelector(".humanDiv");
 let dayModeDiv = document.querySelector(".dayModeDiv");
+let boardImg = document.querySelector(".boardImg");
 dayModeDiv.addEventListener("click", dayNightToggle);
 let bod = document.querySelector("body");
 let nav = document.querySelector("nav");
@@ -21,28 +22,31 @@ let nav = document.querySelector("nav");
 diceImg.addEventListener("click", function (event) {
   diceImg.src =
     "img/dice/" + imgList[Math.floor(Math.random() * imgList.length)];
+  dayNightToggle();
 });
 
 GenStuff();
 // yuck refactor
 function GenStuff() {
-  let humanNode = document.createElement("img");
-  let vampNode = document.createElement("img");
-  humanNode.src = "img/man.png";
-  humanNode.classList.add("piece");
-  humanDiv.appendChild(humanNode);
-  vampNode.src = "img/vamp.png";
-  vampNode.classList.add("piece");
-  vampDiv.appendChild(vampNode);
+  for (let i = 0; i < 2; i++) {
+    let humanNode = document.createElement("img");
+    let vampNode = document.createElement("img");
+    humanNode.src = "img/man.png";
+    humanNode.classList.add("piece");
+    humanDiv.appendChild(humanNode);
+    vampNode.src = "img/vamp.png";
+    vampNode.classList.add("piece");
+    vampDiv.appendChild(vampNode);
+  }
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 10; i++) {
     let imgNode = document.createElement("img");
     imgNode.src = "img/bat.png";
     imgNode.classList.add("piece");
     vampDiv.appendChild(imgNode);
   }
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 10; i++) {
     let imgNode = document.createElement("img");
     imgNode.src = "img/garlic.png";
     imgNode.classList.add("piece");
@@ -82,22 +86,30 @@ function drag(e) {
     document.removeEventListener("mousemove", moving);
   };
 
+  // jquery for mousing out
+  // so the img doesn't stick to the mouse forever
+  $(document).mouseleave(function () {
+    document.removeEventListener("mousemove", moving);
+  });
+
   e.target.ondragstart = function () {
     return false;
   };
 }
 
 // ugly toggle, ternary instead?
-function dayNightToggle(e) {
-  if (e.target.innerText == "☀") {
+function dayNightToggle() {
+  if (dayModeDiv.innerText == "☀") {
     bod.classList.toggle("bg-dark");
     nav.classList.toggle("bg-dark");
     nav.classList.toggle("navbar-dark");
-    e.target.innerText = "🌙";
+    boardImg.src = "img/board2night.png";
+    dayModeDiv.innerText = "🌙";
   } else {
     bod.classList.toggle("bg-dark");
     nav.classList.toggle("bg-dark");
     nav.classList.toggle("navbar-dark");
-    e.target.innerText = "☀";
+    boardImg.src = "img/board2day.png";
+    dayModeDiv.innerText = "☀";
   }
 }

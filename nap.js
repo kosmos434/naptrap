@@ -1,7 +1,8 @@
 //TODO
-// day night mode
-// sun/moon toggle emoji for nav
 // refactor or clean up everything
+// flex box or grid for board instead of img
+// snap to grid?
+// simple dice animation?
 
 console.log("howdy 🤠");
 

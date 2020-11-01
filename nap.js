@@ -9,12 +9,15 @@ console.log("howdy 🤠");
 // react to the drag function
 let imgList = ["d1.png", "d2.png", "d3.png", "d4.png", "d5.png", "d6.png"];
 document.addEventListener("mousedown", drag);
-let diceBtn = document.querySelector(".btn");
 let diceImg = document.querySelector(".dice");
 let vampDiv = document.querySelector(".vampDiv");
 let humanDiv = document.querySelector(".humanDiv");
+let dayModeDiv = document.querySelector(".dayModeDiv");
+dayModeDiv.addEventListener("click", dayNightToggle);
+let bod = document.querySelector("body");
+let nav = document.querySelector("nav");
 
-diceBtn.addEventListener("click", function (event) {
+diceImg.addEventListener("click", function (event) {
   diceImg.src =
     "img/dice/" + imgList[Math.floor(Math.random() * imgList.length)];
 });
@@ -54,7 +57,7 @@ function drag(e) {
   if (!e.target.classList.contains("piece")) return;
 
   // so this is your mouse position inside of the image
-  // like if you click the middle of the image you are x and y offset
+  // like if you click the middle of the image you get x and y offset
   let shiftX = e.clientX - e.target.getBoundingClientRect().left;
   let shiftY = e.clientY - e.target.getBoundingClientRect().top;
 
@@ -81,4 +84,19 @@ function drag(e) {
   e.target.ondragstart = function () {
     return false;
   };
+}
+
+// ugly toggle, ternary instead?
+function dayNightToggle(e) {
+  if (e.target.innerText == "☀") {
+    bod.classList.toggle("bg-dark");
+    nav.classList.toggle("bg-dark");
+    nav.classList.toggle("navbar-dark");
+    e.target.innerText = "🌙";
+  } else {
+    bod.classList.toggle("bg-dark");
+    nav.classList.toggle("bg-dark");
+    nav.classList.toggle("navbar-dark");
+    e.target.innerText = "☀";
+  }
 }

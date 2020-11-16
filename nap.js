@@ -1,12 +1,10 @@
 console.log("howdy 🤠");
-//TODO
-// refactor or clean up everything
-// flex box or grid for board instead of img
-// snap to grid?
-// simple dice animation?
+/**TODO
+ * clean up genstuff
+ * bespoke pieces and icons, no more emojis
+ */
 
-// this uses "bubbling" to make all these
-// react to the drag function
+// this uses "bubbling"
 document.addEventListener("mousedown", drag);
 
 let imgList = ["d1.png", "d2.png", "d3.png", "d4.png", "d5.png", "d6.png"];
@@ -19,13 +17,14 @@ dayModeDiv.addEventListener("click", dayNightToggle);
 let bod = document.querySelector("body");
 let nav = document.querySelector("nav");
 
+GenStuff();
+
 diceImg.addEventListener("click", function (event) {
   diceImg.src =
     "img/dice/" + imgList[Math.floor(Math.random() * imgList.length)];
   dayNightToggle();
 });
 
-GenStuff();
 // yuck refactor
 function GenStuff() {
   for (let i = 0; i < 2; i++) {
@@ -39,14 +38,14 @@ function GenStuff() {
     vampDiv.appendChild(vampNode);
   }
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 8; i++) {
     let imgNode = document.createElement("img");
     imgNode.src = "img/bat.png";
     imgNode.classList.add("piece");
     vampDiv.appendChild(imgNode);
   }
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 8; i++) {
     let imgNode = document.createElement("img");
     imgNode.src = "img/garlic.png";
     imgNode.classList.add("piece");
@@ -83,21 +82,15 @@ function drag(e) {
   document.addEventListener("mousemove", moving);
 
   e.target.onmouseup = function () {
+    e.target.style.zIndex = 0; // should stop the "sticking image" problem
     document.removeEventListener("mousemove", moving);
   };
-
-  // jquery for mousing out
-  // so the img doesn't stick to the mouse forever
-  $(document).mouseleave(function () {
-    document.removeEventListener("mousemove", moving);
-  });
 
   e.target.ondragstart = function () {
     return false;
   };
 }
 
-// ugly toggle, ternary instead?
 function dayNightToggle() {
   if (dayModeDiv.innerText == "☀") {
     bod.classList.toggle("bg-dark");

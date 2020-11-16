@@ -19,9 +19,7 @@
       <img src="img/vamp.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
       Naptrap
     </a>
-
     <div class="dayModeDiv topnav-centered">☀</div>
-
     <div>
       <img class="dice" src="img/dice/d5.png">
     </div>
@@ -29,13 +27,48 @@
 
 
   <!-- board & sidebars div -->
-  <div class="d-flex">
+  <div class="d-flex align-items-center justify-content-center ">
     <div style="width: 120px;" class="humanDiv""></div>
     <div>
       <img class=" boardImg" draggable="false" ondragstart="return false;" src="img/board2day.png">
     </div>
     <div style="width: 120px;" class="vampDiv"></div>
   </div>
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn fixed-bottom" data-toggle="modal" data-target="#infobox">
+    ❔
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="infobox" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Rules</h5>
+          <button type="button" data-dismiss="modal" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="entry-content">
+            <ol>
+              <li>Humans on left vampires on right</li>
+              <li>Rolling the dice will advance time to day/night</li>
+              <li>Also clicking the sun/moon icon will advance time</li>
+              <li>Players move during appropriate time</li>
+              <li>Move exactly the rolled amount unless over an enemy</li>
+              <li>Lay down traps...or not</li>
+              <li>Moving over or landing on a trap traps you for 1 turn</li>
+              <li>Traps are removed after trapping 1 or more players for 1 turn</li>
+              <li>Land on the enemy to defeat them</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Bootstrap stuff -->
   <script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
